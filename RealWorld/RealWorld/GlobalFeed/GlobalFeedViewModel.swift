@@ -5,22 +5,23 @@ import SwiftyJSON
 struct GlobalFeedViewModel {
     
     let disposeBag = DisposeBag()
+    let provider: ServiceProviderType!
     
-    let articles$: BehaviorSubject<[Article]> = BehaviorSubject(value: [])
+    var articles$: Observable<[Article]?>
     let error$: BehaviorSubject<String?> = BehaviorSubject(value: nil)
     let requestInProgress$ = BehaviorSubject(value: false)
     
+    init(provider: ServiceProviderType) {        
+        self.provider = provider
+        self.articles$ = provider.articleService.articles$
+    }
+    
     func fetchArticles() {
-        let provider = RxMoyaProvider<ArticleService>()
         requestInProgress$.onNext(true)
-        provider.request(.articles)
-            .subscribe { event in
+        self.provider.articleService.fetch()
+            .subscribe{ event in
                 self.requestInProgress$.onNext(false)
                 switch event {
-                case let .next(response):
-                    let json = JSON(data: response.data)
-                    let articles = json["articles"].map { Article(json: $0.1) }
-                    self.articles$.onNext(articles)
                 case let .error(error):
                     self.error$.onNext(error.localizedDescription)
                 default:

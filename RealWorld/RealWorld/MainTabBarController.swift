@@ -3,12 +3,20 @@ import UIKit
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
+    var provider: ServiceProviderType!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Assign self for delegate for that ViewController can respond to UITabBarControllerDelegate methods
         self.delegate = self
-        
+    }
+    
+    init(provider: ServiceProviderType) {
+        super.init(nibName: nil, bundle: nil)
+        self.provider = provider
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -20,7 +28,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         
         let globalNavigationBarController = UINavigationController()
-        let globalFeedViewController = GlobalFeedViewController()
+        let globalFeedViewController = GlobalFeedViewController(provider: provider)
         let globalFeedBarItem = UITabBarItem(title: "Global", image: UIImage(named: "defaultImage2.png"), selectedImage: UIImage(named: "selectedImage2.png"))
         globalNavigationBarController.tabBarItem = globalFeedBarItem
         globalNavigationBarController.viewControllers = [globalFeedViewController]

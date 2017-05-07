@@ -2,10 +2,11 @@ import UIKit
 import RxCocoa
 import RxSwift
 import RxDataSources
+import RxSwiftExt
 
 
 class GlobalFeedViewController: UIViewController, UITableViewDelegate {
-    
+        
     struct Constants {
         static let title = "Global"
         static let cellIdentifier = "ArticleCell"
@@ -16,7 +17,17 @@ class GlobalFeedViewController: UIViewController, UITableViewDelegate {
     var tableView: UITableView!
     
     let disposeBag = DisposeBag()
-    let viewModel = GlobalFeedViewModel()
+    var viewModel: GlobalFeedViewModel!
+    
+    init(provider: ServiceProviderType) {
+        super.init(nibName: nil, bundle: nil)
+        viewModel = GlobalFeedViewModel(provider: provider)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +108,8 @@ extension GlobalFeedViewController {
     }
     
     func bindArticles() {
-        viewModel.articles$.asObserver()
+        viewModel.articles$
+            .unwrap()
             .bind(to: tableView.rx.items(cellIdentifier: Constants.cellIdentifier, cellType: ArticleTableViewCell.self)) { index, article, cell in
                 cell.article = article
             }

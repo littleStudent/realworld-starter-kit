@@ -1,12 +1,13 @@
 
 import Moya
 
-enum ArticleService {
+
+enum ArticleApi {
     case articles
 }
 
 // MARK: - TargetType Protocol Implementation
-extension ArticleService: TargetType {
+extension ArticleApi: TargetType {
     var baseURL: URL { return URL(string: "https://conduit.productionready.io/api")! }
     var path: String {
         switch self {

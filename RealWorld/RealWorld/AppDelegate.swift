@@ -4,6 +4,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    fileprivate let serviceProvider: ServiceProviderType = ServiceProvider()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -12,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
         
-        window?.rootViewController = MainTabBarController()
+        window?.rootViewController = MainTabBarController(provider: serviceProvider)
         
         UITabBar.appearance().tintColor = Colors.primary
         UINavigationBar.appearance().tintColor = Colors.primary
