@@ -69,7 +69,10 @@ extension GlobalFeedViewController {
         
         newTableView.rx.itemSelected
             .subscribe(onNext: { indexPath in
-                self.navigationController?.pushViewController(ArticleViewController(), animated: true)
+                if let cell = self.tableView.cellForRow(at: indexPath) as? ArticleTableViewCell, let article = cell.article {
+                    self.navigationController?.pushViewController(ArticleViewController(article: article), animated: true)
+                }
+                
             })
             .disposed(by: disposeBag)
         
