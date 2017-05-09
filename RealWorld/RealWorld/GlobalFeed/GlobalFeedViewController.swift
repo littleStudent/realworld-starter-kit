@@ -18,9 +18,11 @@ class GlobalFeedViewController: UIViewController, UITableViewDelegate {
     
     let disposeBag = DisposeBag()
     var viewModel: GlobalFeedViewModel!
+    var provider: ServiceProviderType!
     
     init(provider: ServiceProviderType) {
         super.init(nibName: nil, bundle: nil)
+        self.provider = provider
         viewModel = GlobalFeedViewModel(provider: provider)
     }
     
@@ -81,7 +83,7 @@ extension GlobalFeedViewController {
         newTableView.rx.itemSelected
             .subscribe(onNext: { indexPath in
                 if let cell = self.tableView.cellForRow(at: indexPath) as? ArticleTableViewCell, let article = cell.article {
-                    self.navigationController?.pushViewController(ArticleViewController(article: article), animated: true)
+                    self.navigationController?.pushViewController(ArticleViewController(provider: self.provider, article: article), animated: true)
                 }
                 
             })

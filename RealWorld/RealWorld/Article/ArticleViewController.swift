@@ -7,12 +7,13 @@ class ArticleViewController: UIViewController {
     
     let header = ArticleHeaderView()
     let content = ArticleContentView()
-    let comments = CommentsViewController()
+    var comments: CommentsViewController!
     var scrollView: UIScrollView!
     
-    required init(article: Article) {
+    required init(provider: ServiceProviderType, article: Article) {
         super.init(nibName: nil, bundle: nil)
         self.article = article
+        self.comments = CommentsViewController(provider: provider, articleSlug: article.slug!)
     }
     
     required init?(coder aDecoder: NSCoder) {

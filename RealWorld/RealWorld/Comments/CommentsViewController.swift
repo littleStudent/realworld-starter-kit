@@ -13,6 +13,8 @@ class CommentsViewController: UIViewController {
  
     var commentsLabel = UILabel()
     
+    var viewModel: CommentsViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,8 +26,13 @@ class CommentsViewController: UIViewController {
         }
     }
     
-    init() {
+    init(provider: ServiceProviderType, articleSlug: String) {
         super.init(nibName: nil, bundle: nil)
+        viewModel = CommentsViewModel(provider: provider, articleSlug: articleSlug)
+        viewModel.fetchComments()
+        viewModel.comments$.subscribe(onNext: { comments in
+            print(comments)
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {

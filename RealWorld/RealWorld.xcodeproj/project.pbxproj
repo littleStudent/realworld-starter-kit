@@ -15,6 +15,9 @@
 		B80AC1D61EBF538A00E416D4 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AC1D51EBF538A00E416D4 /* BaseService.swift */; };
 		B80AC1D81EBF53AC00E416D4 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AC1D71EBF53AC00E416D4 /* ServiceProvider.swift */; };
 		B80AC1DB1EBF544E00E416D4 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AC1DA1EBF544E00E416D4 /* ArticleService.swift */; };
+		B82722E71EC0D33700933F72 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82722E61EC0D33700933F72 /* CommentService.swift */; };
+		B82722E91EC0D7E400933F72 /* Dictionary+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82722E81EC0D7E400933F72 /* Dictionary+merge.swift */; };
+		B82722ED1EC1998C00933F72 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82722EC1EC1998C00933F72 /* CommentsViewModel.swift */; };
 		B841C59F1EBD21B200AC9F52 /* PersonalFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B841C59E1EBD21B200AC9F52 /* PersonalFeedViewController.swift */; };
 		B841C5A21EBD222E00AC9F52 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B841C5A11EBD222E00AC9F52 /* MainTabBarController.swift */; };
 		B841C5A81EBDAC0400AC9F52 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B841C5A71EBDAC0400AC9F52 /* Article.swift */; };
@@ -70,6 +73,9 @@
 		B80AC1D51EBF538A00E416D4 /* BaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseService.swift; path = Shared/Services/BaseService.swift; sourceTree = "<group>"; };
 		B80AC1D71EBF53AC00E416D4 /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceProvider.swift; path = Shared/Services/ServiceProvider.swift; sourceTree = "<group>"; };
 		B80AC1DA1EBF544E00E416D4 /* ArticleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleService.swift; path = Shared/Services/ArticleService.swift; sourceTree = "<group>"; };
+		B82722E61EC0D33700933F72 /* CommentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentService.swift; path = Shared/Services/CommentService.swift; sourceTree = "<group>"; };
+		B82722E81EC0D7E400933F72 /* Dictionary+merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+merge.swift"; path = "Shared/Extensions/Dictionary+merge.swift"; sourceTree = "<group>"; };
+		B82722EC1EC1998C00933F72 /* CommentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewModel.swift; path = Comments/CommentsViewModel.swift; sourceTree = "<group>"; };
 		B841C59E1EBD21B200AC9F52 /* PersonalFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonalFeedViewController.swift; path = PersonalFeed/PersonalFeedViewController.swift; sourceTree = "<group>"; };
 		B841C5A11EBD222E00AC9F52 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B841C5A71EBDAC0400AC9F52 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Article.swift; path = Shared/Models/Article.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 				B80AC1D51EBF538A00E416D4 /* BaseService.swift */,
 				B80AC1D71EBF53AC00E416D4 /* ServiceProvider.swift */,
 				B80AC1DA1EBF544E00E416D4 /* ArticleService.swift */,
+				B82722E61EC0D33700933F72 /* CommentService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -229,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				B841C5B41EBDCF6900AC9F52 /* JSONDateExtension.swift */,
+				B82722E81EC0D7E400933F72 /* Dictionary+merge.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -247,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				B841C5CA1EBE1E4500AC9F52 /* CommentsViewController.swift */,
+				B82722EC1EC1998C00933F72 /* CommentsViewModel.swift */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -598,7 +607,10 @@
 				B841C5BF1EBDEA8200AC9F52 /* ArticleApi.swift in Sources */,
 				B841C59F1EBD21B200AC9F52 /* PersonalFeedViewController.swift in Sources */,
 				B841C5BC1EBDEA7600AC9F52 /* ArticleTableViewCell.swift in Sources */,
+				B82722E71EC0D33700933F72 /* CommentService.swift in Sources */,
+				B82722ED1EC1998C00933F72 /* CommentsViewModel.swift in Sources */,
 				B841C5A81EBDAC0400AC9F52 /* Article.swift in Sources */,
+				B82722E91EC0D7E400933F72 /* Dictionary+merge.swift in Sources */,
 				B841C5A21EBD222E00AC9F52 /* MainTabBarController.swift in Sources */,
 				B841C5CD1EBE1F7100AC9F52 /* AvatarImageView.swift in Sources */,
 				B80AC1D61EBF538A00E416D4 /* BaseService.swift in Sources */,
