@@ -59,7 +59,7 @@ class ArticleViewController: UIViewController {
         self.comments.view.snp.makeConstraints { make -> Void in
             make.top.equalTo(content.snp.bottom)
             make.left.equalTo(header)
-            make.height.equalTo(70)
+            make.height.equalTo(100)
             make.width.equalTo(70)
         }
     }
