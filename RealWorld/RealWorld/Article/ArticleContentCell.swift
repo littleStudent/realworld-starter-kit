@@ -9,15 +9,19 @@
 import Foundation
 import UIKit
 
-class ArticleContentView: UIView {
+class ArticleContentCell: UITableViewCell {
     
     var titleLabel: UILabel!
     var descriptionLabel: UILabel!
     
-    required init() {
-        super.init(frame: .zero)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupTitleLabel()
         setupDescriptionLabel()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func update(title: String, description: String) {
@@ -29,28 +33,21 @@ class ArticleContentView: UIView {
     func setupTitleLabel() {
         self.titleLabel = UILabel()
         self.titleLabel.font = Fonts.title
-        self.addSubview(self.titleLabel)
+        self.contentView.addSubview(self.titleLabel)
         self.titleLabel.snp.makeConstraints { make -> Void in
-            make.top.equalTo(self.snp.top)
-            make.left.equalTo(self)
+            make.top.equalTo(10)
+            make.left.equalTo(20)
         }
     }
     
     func setupDescriptionLabel() {
         self.descriptionLabel = UILabel()
         self.descriptionLabel.font = Fonts.normal
-        self.addSubview(self.descriptionLabel)
+        self.contentView.addSubview(self.descriptionLabel)
         self.descriptionLabel.snp.makeConstraints { make -> Void in
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.left.equalTo(self)
+            make.left.equalTo(20)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(10)
         }
-        self.snp.makeConstraints { make -> Void in
-            make.bottom.equalTo(self.descriptionLabel)
-            
-        }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

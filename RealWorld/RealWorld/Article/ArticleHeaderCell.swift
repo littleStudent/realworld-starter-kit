@@ -11,16 +11,20 @@ import UIKit
 
 
 
-class ArticleHeaderView: UIView {
+class ArticleHeaderCell: UITableViewCell {
     
     var authorSmallView: AuthorSmallView!
     
-    required init() {
-        super.init(frame: .zero)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupAuthorSmallView()
     }
     
-    func update(avatarUrl: String, username: String, createdAt: Date) {
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func update(avatarUrl: String?, username: String?, createdAt: Date?) {
         authorSmallView.update(avatarUrl: avatarUrl, author: username, createdAt: createdAt)
     }
     
@@ -31,10 +35,6 @@ class ArticleHeaderView: UIView {
             make.height.equalTo(70)
             make.left.equalTo(20)
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

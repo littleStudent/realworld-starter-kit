@@ -30,6 +30,7 @@ final class CommentService: BaseService, CommentServiceType {
                 let json = JSON(data: response.data)
                 let comments = json["comments"].map { Comment(json: $0.1) }
                 self.commentsSubject
+                    .take(1)
                     .subscribe(onNext: { commentMap in
                         if let commentMap = commentMap {
                             self.commentsSubject.onNext(commentMap.updatedValue(comments, forKey: slug))

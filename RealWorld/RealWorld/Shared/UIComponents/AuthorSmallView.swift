@@ -21,17 +21,23 @@ class AuthorSmallView: UIView {
         setupCreatedAtLabel()
     }
     
-    func update(avatarUrl: String, author: String, createdAt: Date) {
-        avatar.kf.setImage(with: URL(string: avatarUrl))
-        authorLabel.text = author
-        createdAtLabel.text = dateFormatter.string(from: createdAt)
+    func update(avatarUrl: String?, author: String?, createdAt: Date?) {
+        if let avatarUrl = avatarUrl {
+            avatar.kf.setImage(with: URL(string: avatarUrl))
+        }
+        if let author = author {
+            authorLabel.text = author
+        }
+        if let createdAt = createdAt {
+            createdAtLabel.text = dateFormatter.string(from: createdAt)
+        }
     }
     
     func setupAvatar() {
         self.avatar = AvatarImageView()
         self.addSubview(self.avatar)
         self.avatar.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(20)
+            make.top.equalTo(0)
             make.left.equalTo(self)
         }
     }

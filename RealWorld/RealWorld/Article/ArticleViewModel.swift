@@ -2,35 +2,33 @@ import RxSwift
 import Moya
 import SwiftyJSON
 
-struct CommentsViewModel {
+struct ArticleViewModel {
     
     let disposeBag = DisposeBag()
     let provider: ServiceProviderType!
     
+    var article$ = ReplaySubject<Article>.create(bufferSize: 1)
     var comments$: Observable<[Comment]?>
-    var articleSlug$ = ReplaySubject<String>.create(bufferSize: 1)
     let error$: BehaviorSubject<String?> = BehaviorSubject(value: nil)
     let requestInProgress$ = BehaviorSubject(value: false)
     
-    init(provider: ServiceProviderType, articleSlug: String) {
+    init(provider: ServiceProviderType, article: Article) {
         self.provider = provider
-        self.articleSlug$.onNext(articleSlug)
+        self.article$.onNext(article)
         self.comments$ = provider.commentService.comments$
             .unwrap()
-            .withLatestFrom(articleSlug$)  { ($0, $1) }
-            .filter { (commentMap, articleSlug) in
-                commentMap[articleSlug] != nil
-            }
-            .map { (commentMap, articleSlug) in
-                commentMap[articleSlug]
-            }
+            .withLatestFrom(article$)  { ($0, $1) }
+            .map { (commentMap, article) in
+                article.slug != nil ? commentMap[article.slug!] : []
+        }
     }
     
     func fetchComments() {
         requestInProgress$.onNext(true)
-        self.articleSlug$
-            .subscribe(onNext: { articleSlug in
-                self.provider.commentService.fetchCommentsForArticle(slug: articleSlug)
+        self.article$
+            .take(1)
+            .subscribe(onNext: { article in
+                self.provider.commentService.fetchCommentsForArticle(slug: article.slug!)
                     .subscribe { event in
                         self.requestInProgress$.onNext(false)
                         switch event {
